@@ -20,6 +20,8 @@ import org.hornetq.core.remoting.impl.netty.NettyConnectorFactory;
 //TODO proper logging and exception handling
 public class JMSClient {
 
+	private static final String MASTER_SERVER_JMS_PORT = "5445";
+	private static final String MASTER_SERVER_HOSTNAME = "localhost";
 	private static final String JMS_USER_PASSWORD = "123123";
 	private static final String JMS_USER = "jmsuser";
 	private static final String QUEUE_NAME = "NotificationQueue";
@@ -30,8 +32,8 @@ public class JMSClient {
 	public JMSClient(MessageListener listener) {
 		this.listener = listener;
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("host", "localhost");
-		map.put("port", "5445");
+		map.put("host", MASTER_SERVER_HOSTNAME);
+		map.put("port", MASTER_SERVER_JMS_PORT);
 		this.connectionSettings = map;
 	}
 

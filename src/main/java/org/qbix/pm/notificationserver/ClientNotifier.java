@@ -19,6 +19,7 @@ import org.jboss.netty.util.internal.ConcurrentHashMap;
 import com.google.gson.Gson;
 
 public class ClientNotifier implements MessageListener {
+	
 	private final static int SOCKET_PORT = 4444;
 
 	private final Map<Long, Socket> sockets = new ConcurrentHashMap<Long, Socket>();
@@ -123,6 +124,8 @@ public class ClientNotifier implements MessageListener {
 				OutputStream outputStream = socket.getOutputStream();
 				System.out.println("writing to " + userId);
 				outputStream.write(notificationJson.getBytes("UTF-8"));
+				outputStream.write("\n".getBytes("UTF-8"));
+				outputStream.flush();
 			} catch (IOException ex) {
 				System.out.println("error sending update to " + userId);
 				// error sending update
